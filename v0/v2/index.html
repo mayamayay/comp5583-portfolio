@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zhang · 个人主页</title>
+<style>
+  :root{
+    --ink:#16181d;
+    --body:#3f444e;
+    --faint:#5b6270;
+    --accent:#3b5bdb;
+    --accent-ink:#2c46b0;
+    --rule:#e5e7eb;
+    --paper:#ffffff;
+    --wash:#f6f7f9;
+    --focus:#185fa5;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--body);
+    font-family:system-ui,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    font-size:16px;
+    line-height:1.75;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px}
+
+  .skip{
+    position:absolute;left:-9999px;top:8px;z-index:100;
+    background:var(--ink);color:#fff;padding:10px 16px;
+    border-radius:6px;font-size:14px;text-decoration:none;
+  }
+  .skip:focus{left:24px}
+
+  :focus-visible{
+    outline:2px solid var(--focus);
+    outline-offset:3px;
+    border-radius:3px;
+  }
+
+  header.top{
+    position:sticky;top:0;z-index:10;
+    background:rgba(255,255,255,.92);
+    border-bottom:1px solid var(--rule);
+  }
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{font-weight:600;color:var(--ink);text-decoration:none;letter-spacing:.01em}
+  nav a{color:var(--body);text-decoration:none;font-size:14px;margin-left:22px}
+  nav a:hover{color:var(--accent)}
+  nav a:focus-visible{outline:2px solid var(--focus);outline-offset:4px}
+
+  section{padding:64px 0;border-bottom:1px solid var(--rule)}
+  section:last-of-type{border-bottom:none}
+
+  .hello{
+    font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--faint);margin:0 0 14px;font-weight:600;
+  }
+  h1{
+    font-size:38px;line-height:1.25;margin:0 0 18px;
+    color:var(--ink);font-weight:700;letter-spacing:-.02em;
+  }
+  h1 .accent{color:var(--accent)}
+  .intro{font-size:17px;margin:0 0 10px}
+  .intro-sub{font-size:15px;color:var(--body);margin:0}
+
+  h2{font-size:22px;margin:0 0 20px;color:var(--ink);font-weight:650;letter-spacing:-.01em}
+  p{margin:0 0 14px}
+
+  .card{
+    background:var(--wash);
+    border:1px solid var(--rule);
+    border-radius:10px;
+    padding:22px 24px;
+    margin-bottom:16px;
+  }
+  .card h3{font-size:17px;margin:0 0 4px;color:var(--ink);font-weight:600}
+  .card .meta{font-size:13px;color:var(--faint);margin:0 0 12px}
+  .card p:last-of-type{margin-bottom:0}
+
+  .stack{
+    display:flex;flex-wrap:wrap;gap:6px;
+    margin:0 0 14px;padding:0;list-style:none;
+  }
+  .stack li{
+    font-size:12px;line-height:1.6;
+    padding:2px 9px;border-radius:999px;
+    background:#eef1f7;color:#3b4453;
+    border:1px solid #dde2ec;
+    font-variant-numeric:tabular-nums;
+  }
+
+  .facts{
+    margin:0 0 14px;padding:0;list-style:none;
+    display:grid;grid-template-columns:repeat(2,1fr);gap:6px 24px;
+    font-size:14.5px;
+  }
+  .facts li{position:relative;padding-left:15px}
+  .facts li::before{
+    content:"";position:absolute;left:0;top:.72em;
+    width:5px;height:5px;border-radius:50%;background:var(--accent);
+  }
+  .facts b{color:var(--ink);font-weight:600}
+
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .about-grid h3{font-size:15px;color:var(--ink);margin:0 0 8px;font-weight:600}
+  ul.plain{margin:0;padding-left:18px}
+  ul.plain li{margin-bottom:6px}
+  ul.plain li b{color:var(--ink);font-weight:600}
+
+  .courses{
+    margin:8px 0 0;padding:0;list-style:none;
+    display:flex;flex-wrap:wrap;gap:6px;
+  }
+  .courses li{
+    font-size:12.5px;padding:2px 9px;border-radius:5px;
+    background:#eef1f7;color:#3b4453;border:1px solid #dde2ec;
+  }
+
+  .contact a{color:var(--accent-ink);text-decoration:none;border-bottom:1px solid currentColor}
+  .contact a:hover{opacity:.75}
+  .contact dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 24px;font-size:15px}
+  .contact dt{color:var(--faint);font-size:13px;padding-top:1px}
+  .contact dd{margin:0}
+
+  footer{padding:28px 0 40px;font-size:13px;color:var(--faint);border-top:1px solid var(--rule)}
+
+  @media (max-width:640px){
+    h1{font-size:30px}
+    section{padding:48px 0}
+    nav a{margin-left:14px;font-size:13px}
+    .about-grid{grid-template-columns:1fr;gap:18px}
+    .facts{grid-template-columns:1fr}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#home">跳到主要内容</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#home">Zhang</a>
+    <nav aria-label="主导航">
+      <a href="#home">首页</a>
+      <a href="#about">关于</a>
+      <a href="#projects">项目</a>
+      <a href="#contact">联系</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section id="home" aria-labelledby="h-home">
+    <div class="wrap">
+      <p class="hello">个人主页</p>
+      <h1 id="h-home">你好，我是 <span class="accent">Zhang</span>。<br>我做后端系统，也关心数据怎么被长期保存下来。</h1>
+      <p class="intro">本科读金融特色化软件工程，现在读人工智能体方向的硕士一年级。手上在做证券交易平台的数据归档模块，也在补前端与可访问性方面的东西。</p>
+      <p class="intro-sub">这个站点分四部分：关于我、我做过的项目、以及怎么联系我。</p>
+    </div>
+  </section>
+
+  <section id="about" aria-labelledby="h-about">
+    <div class="wrap">
+      <h2 id="h-about">关于</h2>
+      <div class="about-grid">
+        <div>
+          <h3>教育背景</h3>
+          <p>本科毕业于金融特色化软件工程（工学学士，2026），现读人工智能体方向硕士一年级。毕业设计方向为交易数据的归档与合规留存。</p>
+          <ul class="courses" aria-label="核心课程">
+            <li>数据结构与算法</li>
+            <li>数据库系统</li>
+            <li>软件工程</li>
+            <li>金融学基础</li>
+            <li>证券投资学</li>
+          </ul>
+        </div>
+        <div>
+          <h3>兴趣方向</h3>
+          <ul class="plain">
+            <li><b>金融数据治理</b>——归档保留策略、冷热分层、归档后仍可检索</li>
+            <li><b>关系型数据库</b>——索引结构、查询计划、批量迁移的写入放大</li>
+            <li><b>金融文档信息抽取</b>——年报与招股书的指标定位与核对</li>
+            <li><b>智能体系统</b>——工具调用、输出评测、让结果可复核</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" aria-labelledby="h-projects">
+    <div class="wrap">
+      <h2 id="h-projects">项目</h2>
+
+      <article class="card">
+        <h3>证券交易综合运营平台 · 数据归档模块</h3>
+        <p class="meta">毕业设计 · 2026 · 独立完成</p>
+        <ul class="stack" aria-label="技术栈">
+          <li>Spring Boot 3.x</li>
+          <li>Jakarta EE</li>
+          <li>Vue 3</li>
+          <li>RuoYi 框架</li>
+          <li>MySQL</li>
+          <li>RBAC</li>
+        </ul>
+        <p>这是一个面向证券交易场景的数据归档系统。交易系统每天沉淀大量订单与成交记录，长期留存既是合规要求，也会拖慢在线库的查询；手工归档不可追溯，出问题时无法证明数据完整性。系统目标是把历史数据按策略定期归档，同时保留检索、恢复与完整性校验三条通路。</p>
+        <ul class="facts">
+          <li>核心表 <b>4</b> 张：archive_policy、archive_metadata、archive_task、archive_restore</li>
+          <li>权限分 <b>2</b> 层：admin（menu_id ≥ 2000）与 common（1–1060）</li>
+          <li>功能域 <b>7</b> 个：策略、任务、元数据、检索、恢复、校验、报表</li>
+          <li>归档模型：策略 → 任务 → 元数据快照，逐批可追溯</li>
+        </ul>
+        <p>我负责归档模块的整体设计与实现。数据库层设计上述四张核心表，用策略表描述归档范围与周期、任务表承载调度与执行状态、元数据表记录每一批数据的去向、恢复表保存回灌请求。后端基于 Spring Boot 3.x 与 Jakarta EE 命名空间实现归档执行逻辑，前端为 Vue 3 单页应用，权限与菜单沿用 RuoYi 的 RBAC 模型，按管理员与普通用户两个角色隔离可见范围。归档执行由定时任务触发，单次执行按策略批量迁移并写入元数据快照，完整性校验环节对归档前后记录数与校验和做比对，结果可导出为合规报表。</p>
+      </article>
+
+      <article class="card">
+        <h3>金融文档本地检索工具 <span class="meta">（拟议项目）</span></h3>
+        <p class="meta">个人项目 · 规划中</p>
+        <ul class="stack" aria-label="计划技术栈">
+          <li>Python 3.13</li>
+          <li>PyMuPDF</li>
+          <li>倒排索引</li>
+          <li>本地优先</li>
+        </ul>
+        <p>金融文档的 PDF（年报、招股书、募集说明书）分散在多个目录，系统搜索只能命中文件名，找不到正文内容。这个项目要做一个本地运行的全文检索工具，全程离线、不上传任何文件。</p>
+        <ul class="facts">
+          <li>解析层：PyMuPDF 抽取 PDF 正文，原生解析 Markdown，按段落分块</li>
+          <li>索引层：词项到文档的倒排映射，先落盘为简单段式结构</li>
+          <li>查询层：支持短语查询与布尔组合</li>
+          <li>状态：已完成技术选型与索引结构设计，尚未编码</li>
+        </ul>
+        <p>这是我为练习检索系统基本原理而提出的项目，目前处于设计阶段，不是已交付的成果。设计上优先保证正确性，压缩与增量更新留到功能跑通之后再考虑。</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="h-contact">
+    <div class="wrap contact">
+      <h2 id="h-contact">联系</h2>
+      <p>邮件是最快的联系方式，通常在两三个工作日内回复。</p>
+      <dl>
+        <dt>邮箱</dt>
+        <dd><a href="mailto:zhang@example.com">zhang@example.com</a></dd>
+        <dt>GitHub</dt>
+        <dd><a href="https://github.com/mayamayay" target="_blank" rel="noopener">github.com/mayamayay</a></dd>
+        <dt>说明</dt>
+        <dd>本页使用化名展示；学号、住址等个人隐私信息不在公开页面发布。</dd>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Zhang · 本站使用化名展示 · 由 AI 智能体辅助构建（V2）</p>
+  </div>
+</footer>
+
+</body>
+</html>
