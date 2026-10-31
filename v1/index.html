@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zhang · 个人主页</title>
+<style>
+  :root{
+    --ink:#16181d;
+    --body:#3f444e;
+    --faint:#9aa0a6;
+    --accent:#3b5bdb;
+    --rule:#e5e7eb;
+    --paper:#ffffff;
+    --wash:#f6f7f9;
+    --measure:66ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--body);
+    font-family:system-ui,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    font-size:16px;
+    line-height:1.75;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px}
+
+  header.top{
+    position:sticky;top:0;z-index:10;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:saturate(180%) blur(8px);
+    border-bottom:1px solid var(--rule);
+  }
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{font-weight:600;color:var(--ink);text-decoration:none;letter-spacing:.01em}
+  nav a{color:var(--body);text-decoration:none;font-size:14px;margin-left:22px}
+  nav a:hover{color:var(--accent)}
+
+  section{padding:72px 0;border-bottom:1px solid var(--rule)}
+  section:last-of-type{border-bottom:none}
+
+  .eyebrow{
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--faint);margin:0 0 12px;font-weight:600;
+  }
+  h1{
+    font-size:38px;line-height:1.22;margin:0 0 20px;
+    color:var(--ink);font-weight:700;letter-spacing:-.022em;
+    max-width:20ch;
+  }
+  h1 .accent{color:var(--accent)}
+  .lede{font-size:17px;margin:0 0 14px;max-width:var(--measure)}
+  .sub{font-size:15px;margin:0;max-width:var(--measure)}
+
+  h2{font-size:22px;margin:0 0 10px;color:var(--ink);font-weight:650;letter-spacing:-.012em}
+  h2 + .section-lede{font-size:15px;margin:0 0 28px;max-width:var(--measure)}
+  p{margin:0 0 14px}
+
+  .card{
+    background:var(--wash);
+    border:1px solid var(--rule);
+    border-radius:12px;
+    padding:26px 28px;
+    margin-bottom:20px;
+  }
+  .card h3{font-size:18px;margin:0 0 4px;color:var(--ink);font-weight:600;letter-spacing:-.01em}
+  .card .meta{font-size:13px;color:var(--faint);margin:0 0 18px}
+
+  .beat{margin:0 0 16px}
+  .beat-label{
+    display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);font-weight:700;margin-bottom:5px;
+  }
+  .beat p{margin:0;max-width:var(--measure)}
+
+  .metrics{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:1px;background:var(--rule);
+    border:1px solid var(--rule);border-radius:8px;
+    overflow:hidden;margin:0 0 18px;
+  }
+  .metrics div{background:#fff;padding:12px 14px}
+  .metrics b{display:block;font-size:19px;color:var(--ink);font-weight:700;letter-spacing:-.01em;line-height:1.3}
+  .metrics span{font-size:12px;color:var(--faint)}
+
+  .role{
+    font-size:14px;margin:0;padding-top:14px;
+    border-top:1px dashed var(--rule);
+  }
+  .role b{color:var(--ink);font-weight:600}
+
+  details.more{margin-top:16px;border-top:1px solid var(--rule);padding-top:14px}
+  details.more summary{
+    cursor:pointer;font-size:14px;font-weight:600;color:var(--accent);
+    list-style:none;
+  }
+  details.more summary::-webkit-details-marker{display:none}
+  details.more summary::before{content:"＋ ";font-weight:700}
+  details.more[open] summary::before{content:"− "}
+  details.more .inner{padding-top:12px;font-size:15px;max-width:var(--measure)}
+
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  .about-grid h3{font-size:14px;color:var(--ink);margin:0 0 10px;font-weight:600;
+    letter-spacing:.02em;text-transform:uppercase;font-size:12px;color:var(--faint)}
+  ul.plain{margin:0;padding-left:18px}
+  ul.plain li{margin-bottom:7px}
+  ul.plain li b{color:var(--ink);font-weight:600}
+
+  .contact a{color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor}
+  .contact a:hover{opacity:.75}
+  .contact dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 24px;font-size:15px}
+  .contact dt{color:var(--faint);font-size:13px;padding-top:1px}
+  .contact dd{margin:0}
+
+  footer{padding:28px 0 44px;font-size:13px;color:var(--faint);border-top:1px solid var(--rule)}
+
+  @media (max-width:640px){
+    h1{font-size:29px;max-width:none}
+    section{padding:52px 0}
+    nav a{margin-left:14px;font-size:13px}
+    .about-grid{grid-template-columns:1fr;gap:24px}
+    .metrics{grid-template-columns:1fr}
+    .card{padding:22px 20px}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#home">Zhang</a>
+    <nav>
+      <a href="#home">首页</a>
+      <a href="#about">关于</a>
+      <a href="#projects">项目</a>
+      <a href="#contact">联系</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section id="home">
+    <div class="wrap">
+      <p class="eyebrow">个人主页 · 2026</p>
+      <h1>你好，我是 <span class="accent">Zhang</span>。我让历史数据在被忘掉之前，先被安放好。</h1>
+      <p class="lede">金融特色化软件工程专业本科四年级，方向偏后端与数据工程。目前在做证券交易平台的数据归档模块——把交易产生的海量历史数据按策略沉淀下来，同时保留随时可取回的能力。</p>
+      <p class="sub">往下可以看我的教育背景、两个项目，以及联系方式。</p>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <h2>关于</h2>
+      <p class="section-lede">一个偏后端的人，最近在补前端的那一半。</p>
+      <div class="about-grid">
+        <div>
+          <h3>教育背景</h3>
+          <p>金融特色化软件工程 工学学士，本科四年级，预计 2027 年毕业。核心课程：数据结构与算法、数据库系统、软件工程、金融学基础、证券投资学。</p>
+          <p>毕业设计方向：交易数据的归档与合规留存。</p>
+        </div>
+        <div>
+          <h3>兴趣方向</h3>
+          <ul class="plain">
+            <li><b>金融数据治理</b>——归档保留策略、冷热分层、归档后仍可检索</li>
+            <li><b>关系型数据库</b>——索引结构、查询计划、批量迁移的写入放大</li>
+            <li><b>金融文档信息抽取</b>——年报与招股书的指标定位与核对</li>
+            <li><b>AI 辅助软件工程</b>——智能体承担重复实现，人负责判断</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <h2>项目</h2>
+      <p class="section-lede">两个项目：一个已经在跑，一个还在图纸上。都写清楚我具体做了什么。</p>
+
+      <article class="card">
+        <h3>证券交易综合运营平台 · 数据归档模块</h3>
+        <p class="meta">毕业设计 · 2026 · 独立完成</p>
+
+        <div class="beat">
+          <span class="beat-label">问题</span>
+          <p>证券交易系统每天沉淀大量订单与成交记录，长期留存既是合规要求，也拖慢在线库的查询。手工归档不可追溯，出问题无法证明数据完整。</p>
+        </div>
+
+        <div class="beat">
+          <span class="beat-label">做法</span>
+          <p>设计"策略—任务—元数据"三层结构：策略定义归档范围与周期，任务负责调度与执行，元数据记录每一批数据的去向。归档后提供检索、恢复与完整性校验三条通路。</p>
+        </div>
+
+        <div class="beat">
+          <span class="beat-label">结果</span>
+          <p>系统覆盖策略配置、任务管理、元数据浏览、数据检索、数据恢复、完整性校验与合规报表导出七个功能域，并按管理员与普通用户两个角色隔离权限。</p>
+        </div>
+
+        <div class="metrics">
+          <div><b>7</b><span>功能域</span></div>
+          <div><b>2</b><span>角色权限层</span></div>
+          <div><b>4</b><span>核心归档表</span></div>
+        </div>
+
+        <p class="role"><b>我的贡献：</b>需求梳理、数据库设计（archive_policy / archive_metadata / archive_task / archive_restore）、后端归档执行逻辑、前端页面与权限菜单。</p>
+
+        <details class="more">
+          <summary>展开技术细节</summary>
+          <div class="inner">
+            <p>后端基于 Spring Boot 3.x（Jakarta EE 命名空间），前端为 Vue 3 单页应用，权限与菜单沿用 RuoYi 的 RBAC 模型。归档执行采用定时任务触发，单次执行按策略批量迁移并写入元数据快照。</p>
+          </div>
+        </details>
+      </article>
+
+      <article class="card">
+        <h3>金融文档本地检索工具 <span class="meta">（拟议项目）</span></h3>
+        <p class="meta">个人项目 · 规划中</p>
+
+        <div class="beat">
+          <span class="beat-label">问题</span>
+          <p>年报、招股书这类金融文档散落在多个目录，系统搜索只能命中文件名，找不到正文里的内容。</p>
+        </div>
+
+        <div class="beat">
+          <span class="beat-label">做法</span>
+          <p>计划在本地构建倒排索引：解析层抽出正文并分块，索引层维护词项到文档的映射，查询层支持短语与布尔组合。全程离线，不上传任何文件。</p>
+        </div>
+
+        <div class="beat">
+          <span class="beat-label">结果</span>
+          <p>目前完成技术选型与索引结构设计，尚未进入编码。这是为练习检索系统基本原理而提出的项目，不是已交付的成果。</p>
+        </div>
+
+        <p class="role"><b>我的贡献：</b>独立设计，目前处于设计阶段。</p>
+
+        <details class="more">
+          <summary>展开技术细节</summary>
+          <div class="inner">
+            <p>计划使用 Python 实现，解析层依赖 PyMuPDF 处理 PDF、原生解析 Markdown；索引落盘为简单的段式结构，先保证正确性再考虑压缩。</p>
+          </div>
+        </details>
+      </article>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap contact">
+      <h2>联系</h2>
+      <p class="section-lede">邮件最快，通常两三个工作日内回复。</p>
+      <dl>
+        <dt>邮箱</dt>
+        <dd><a href="mailto:zhang@example.com">zhang@example.com</a></dd>
+        <dt>GitHub</dt>
+        <dd><a href="https://github.com/your-github-username" target="_blank" rel="noopener">github.com/your-github-username</a></dd>
+        <dt>说明</dt>
+        <dd>本页使用化名展示，学号与个人隐私信息不在公开页面出现。</dd>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Zhang · 本站使用化名展示 · 由 AI 智能体辅助构建（V1）</p>
+  </div>
+</footer>
+
+</body>
+</html>
